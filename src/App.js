@@ -1,26 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {BrowserRouter as Router,Switch,Route,Redirect} from "react-router-dom";
+import Landing from './pages/landing';
+import Doggles from './pages/doggles';
+import About from './pages/about';
+import Contact from './pages/contact';
+import Cart from './pages/cart';
+import Harness from './pages/harness';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route path='/doggles' component={Doggles} />
+        <Route path='/harness' component={Harness} />
+        <Route path='/cart' component={Cart} />
+        <Route path='/about'component={About} />
+        <Route path='/contact' component={Contact} />
+        <Route path='/' component={Landing} />
+
+        <Redirect to='/' />
+      </Switch>
+    </Router>
   );
 }
-
 export default App;

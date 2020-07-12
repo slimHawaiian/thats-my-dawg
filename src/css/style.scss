@@ -1,0 +1,63 @@
+
+// https://colorschemedesigner.com/csd-3.5/#3O11TYPomw0w0
+
+
+$primary-color: #012283;
+$secondary-color:#001655;
+$light-color: #5872C1;
+$ternary-color:#3155C1;
+$light-gray-color:#F0F0F0;
+$body-font: 'Oswald', sans-serif;
+
+%image-shared{
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+body {
+    font-family: $body-font;
+}
+
+.masthead {
+    @extend %image-shared;
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('../img/military-dog.jpg');
+}
+
+.navbar-brand h2,
+.navbar-dark .navbar-nav .nav-link {
+    color:$primary-color;
+}
+
+.btn-primary-custom,
+.navbar-dark .navbar-toggler,
+.navbar-dark .navbar-toggler-icon{
+    background-color: $primary-color;
+}
+
+.btn-primary-custom{
+    background-color: $primary-color;
+    color:#fff;
+}
+
+
+
+.btn-primary-custom:hover,
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .active>.nav-link, 
+.navbar-dark .navbar-nav .nav-link.active, 
+.navbar-dark .navbar-nav .nav-link.show, 
+.navbar-dark .navbar-nav .show>.nav-lin {
+    color:$light-color;
+}
+
+.nav-background{
+    background-color:$light-gray-color ;
+
+}
+
+h1{
+    color:$secondary-color;
+}
