@@ -6,6 +6,7 @@ import About from './pages/about';
 import Contact from './pages/contact';
 import Cart from './pages/cart';
 import Harness from './pages/harness';
+import Address from './pages/address';
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
         <Route path='/doggles' component={Doggles} />
         <Route path='/harness' component={Harness} />
         <Route path='/cart' component={Cart} />
+        <Route path='/address' component={Address} />
         <Route path='/about'component={About} />
         <Route path='/contact' component={Contact} />
         <Route path='/' component={Landing} />

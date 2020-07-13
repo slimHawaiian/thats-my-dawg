@@ -18,7 +18,7 @@ class Doggles extends Component {
                             <img src={dogglesLink} className='img-fluid' alt='doggles'/>
                         </div>
                         <div className='col-md-6'>
-                            <p><a href='https://www.rexspecs.com/collections/working-military/products/copy-of-rex-specs-original?variant=21805293633641' target="_blank">Rex Specs</a> dog goggles are protective eyewear for the active dog. They are stable and secure while still allowing for full jaw motion and field of view. Rex Specs protect your dogs eyes from debris, environmental hazards, and sun.</p>
+                            <p><a href='https://www.rexspecs.com/collections/working-military/products/copy-of-rex-specs-original?variant=21805293633641' target="_blank" rel="noopener noreferrer">Rex Specs</a> dog goggles are protective eyewear for the active dog. They are stable and secure while still allowing for full jaw motion and field of view. Rex Specs protect your dogs eyes from debris, environmental hazards, and sun.</p>
                             <h2>$79.95</h2>
                             <div className="input-group mb-3">
                                 <input type="number" className="form-control" placeholder="Quantity" aria-label="Quantity" aria-describedby="Quantity"/>
