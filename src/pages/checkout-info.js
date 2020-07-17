@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Address extends Component {
+class CheckoutInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {  }
@@ -8,8 +8,8 @@ class Address extends Component {
     render() { 
         return ( 
             <>
-                <h1>Address</h1>
-                <div className='row'>
+            <h1>Check Out</h1>
+                <div className='row mt-4'>
                     <div className='col-md-8'>
                         <form>
                             <div className='row'>
@@ -49,10 +49,27 @@ class Address extends Component {
                             </div>
                         </form>
                     </div>
+                </div>                
+               
+                <h2 className='mt-4'>Your Credit Card will be charged: $00.00</h2>
+                <p className='text-danger'>*** Do not use your real credit card info ***</p>
+                <div className='row'>
+                    <div className='col-md-4'>
+                        <div className="form-group">
+                            <label htmlFor="cardNumber">Card Number</label>
+                            <input type="text" className="form-control" id="cardNumber" aria-describedby="cardNumber" placeholder="card number"/>
+                        </div>
+                    </div>
+                    <div className='col-md-4'>
+                        <div className="form-group">
+                            <label htmlFor="date">Expiration Date</label>
+                            <input type="date" className="form-control" id="date" aria-describedby="date" placeholder="date"/>
+                        </div>
+                    </div>            
                 </div>
             </>
-         );
+        );
     }
 }
  
-export default Address;
+export default CheckoutInfo;
