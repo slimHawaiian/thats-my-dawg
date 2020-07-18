@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Control, LocalForm } from 'react-redux-form';
 import Confirmation from '../components/email-confirmation';
 
 class ContactForm extends Component {
@@ -9,30 +10,42 @@ class ContactForm extends Component {
     render() { 
 
         const {showConfirmation}=this.state;
-        const onSubmit = () => {
+
+        const onSubmit = (values) => {
             this.setState({showConfirmation:true});
+            console.log("Current state is: " + JSON.stringify(values));
         }
+
         return ( 
             <>
                 {!showConfirmation && <>
                 <h1>Contact</h1>
                 <div className='row'>
                     <div className='col-md-8'>
-                        <form>
+                        <LocalForm onSubmit={values => onSubmit(values)}>
                             <div className="form-group">
                                 <label htmlFor="name">Name</label>
-                                <input type="text" className="form-control" id="name" aria-describedby="name" placeholder="name"/>
+                                <Control.text model=".name" id="name" name="name"
+                                        placeholder="name"
+                                        className="form-control"
+                                    />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="title">Title</label>
-                                <input type="text" className="form-control" id="title" aria-describedby="title" placeholder="title"/>
+                                <Control.text model=".title" id="title" name="title"
+                                        placeholder="title"
+                                        className="form-control"
+                                    />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="desc">Description</label>
-                                <textarea className="form-control" id="description" rows="4" cols="50" aria-describedby="description" placeholder="description"/>
+                                <Control.textarea model=".description" id="description" name="description"
+                                        rows="12"
+                                        className="form-control"
+                                    />
                             </div>                                
-                            <button type="submit" onClick={onSubmit} className="btn btn-primary-custom">Submit</button>
-                        </form>
+                            <button type="submit" className="btn btn-primary-custom">Submit</button>
+                        </LocalForm>
                     </div>
                 </div>
                 </>}
