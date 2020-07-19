@@ -1,14 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {DeleteAll} from '../redux/actions/cartAction';
 
 const CartTable = (props) => {
-    const {cart} = props; 
+    const {cart,deleteAllItems} = props; 
     const total = cart.reduce((sum,item) => sum + (item.price * item.quantity),0);
+
+    const handleClearCart = () =>{
+        deleteAllItems();
+    }
+
     return (        
         <>
             <h1>Cart Total ${total}.00</h1>
             <div className='row d-flex justify-content-end'>
-                <button id='btn-clear-cart' className='btn btn-link btn-muted d-flex justify-content-end'>clear cart</button>
+                <button id='btn-clear-cart' className='btn btn-link btn-muted d-flex justify-content-end' onClick={handleClearCart}>
+                    <i className='fa fa-trash fa-2x text-danger'>&nbsp;</i>
+                </button>
             </div>
            
             <div className="table-responsive">                
@@ -27,14 +35,18 @@ const CartTable = (props) => {
                                 <td>{item.description}</td>
                                 <td>{item.quantity}</td>
                                 <td>${item.price}.00</td>
+                                <td><i className='fa fa-trash fa-lg text-danger'>&nbsp;</i></td>
                             </tr>
                            )                           
-                        })} 
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td> (${total}.00 - Total Price)</td>
-                        </tr>
+                        })}
+                        {cart.length > 0 && 
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>(${total}.00 - Total Price)</td>
+                                <td></td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
@@ -42,10 +54,16 @@ const CartTable = (props) => {
     );   
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
     return  {
-      cart: state.cart
+      cart: state.cart,
     }
 }
 
-export default connect(mapStateToProps) (CartTable);
+const mapDispatchToProps = dispatch => {
+    return{
+        deleteAllItems: () => dispatch(DeleteAll()),       
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps) (CartTable);

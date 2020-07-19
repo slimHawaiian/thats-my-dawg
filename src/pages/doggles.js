@@ -49,4 +49,5 @@ const mapDispatchToProps = dispatch=>{
         addItem: item => {dispatch(cartActions.AddToCart(item))},       
     }
 }
+
 export default connect(mapStateToProps,mapDispatchToProps)(Doggles)

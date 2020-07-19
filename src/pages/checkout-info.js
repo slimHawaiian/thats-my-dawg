@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class CheckoutInfo extends Component {
-    constructor(props) {
-        super(props);      
-    }
+    
     render() { 
         const {cart} = this.props; 
         const total = cart.reduce((sum,item) => sum + (item.price * item.quantity),0);

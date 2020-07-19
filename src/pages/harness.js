@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import FormattedNavigation from './../components/formatted-navigation';
+import { connect } from 'react-redux';
 import harnessLink from '../img/harness.jpg';
+import * as cartActions from '../redux/actions/cartAction';
 
 class Harness extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {  }
-    }
     render() { 
+        const handleSubmission = () =>{
+            this.props.addItem({Id:2,description:'Harness',quantity:1,price:230});
+        }
         return ( 
             <>
                 <FormattedNavigation/>
@@ -23,7 +24,7 @@ class Harness extends Component {
                             <div className="input-group mb-3">
                                 <input type="number" className="form-control" placeholder="Quantity" aria-label="Quantity" aria-describedby="Quantity"/>
                                 <div className="input-group-append">
-                                    <button className="btn btn-outline-secondary" type="button">Add To Cart</button>
+                                    <button className="btn btn-outline-secondary" onClick={handleSubmission} type="button">Add To Cart</button>
                                 </div>
                             </div>
                         </div>
@@ -34,4 +35,16 @@ class Harness extends Component {
     }
 }
  
-export default Harness;
+const mapStateToProps = state=>{
+    return{
+        cart:state.cart,
+    }
+}
+
+const mapDispatchToProps = dispatch=>{
+    return{
+        addItem: item => {dispatch(cartActions.AddToCart(item))},       
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(Harness)

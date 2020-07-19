@@ -18,3 +18,10 @@ export const UpdateCart = Item => {
         item:Item,
     }
 }
+
+export const DeleteAll = () => {
+    return {
+        type:'DELETE_CART',
+        item:[],
+    }
+}
