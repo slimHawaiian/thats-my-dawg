@@ -4,7 +4,8 @@ import {DeleteAll} from '../redux/actions/cartAction';
 
 const CartTable = (props) => {
     const {cart,deleteAllItems} = props; 
-    const total = cart.reduce((sum,item) => sum + (item.price * item.quantity),0);
+    const totalPrice = cart.reduce((sum,item) => sum + (item.price * item.quantity),0);
+    const totalQuantity = cart.reduce((sum,item) => sum + item.quantity,0);
 
     const handleClearCart = () =>{
         deleteAllItems();
@@ -12,10 +13,10 @@ const CartTable = (props) => {
 
     return (        
         <>
-            <h1>Cart Total ${total}.00</h1>
+            <h1>Cart Total ${totalPrice}.00</h1>
             <div className='row d-flex justify-content-end'>
                 <button id='btn-clear-cart' className='btn btn-link btn-muted d-flex justify-content-end' onClick={handleClearCart}>
-                    <i className='fa fa-trash fa-2x text-danger'>&nbsp;</i>
+                    <i className='fa fa-trash fa-2x text-danger'></i>
                 </button>
             </div>
            
@@ -41,10 +42,10 @@ const CartTable = (props) => {
                         })}
                         {cart.length > 0 && 
                             <tr>
-                                <td></td>
-                                <td></td>
-                                <td>(${total}.00 - Total Price)</td>
-                                <td></td>
+                                <td>******</td>
+                                <td>({totalQuantity} - Total Quantity)</td>
+                                <td>(${totalPrice}.00 - Total Price)</td>
+                                <td>******</td>
                             </tr>
                         }
                     </tbody>

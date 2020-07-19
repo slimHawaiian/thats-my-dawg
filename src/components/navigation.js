@@ -7,25 +7,23 @@ class Navigation extends Component {
 
     constructor(props) {
         super(props);
-
-        this.toggleNav = this.toggleNav.bind(this);
+       
         this.state = {
           isNavOpen: false
         };
-    }
-
-    toggleNav () {
-        this.setState({isNavOpen: !this.state.isNavOpen});
-    }
+    }    
 
     render() {
+        const toggleNav = () => {
+            this.setState({isNavOpen: !this.state.isNavOpen});
+        }
        
         const itemCount = this.props.cart.length;
         return (            
             <Navbar dark sticky="top" expand="md">
                 <div className="container">
                     <NavbarBrand className="mr-auto" href="/"><h2>That's My Dawg</h2></NavbarBrand>
-                    <NavbarToggler onClick={this.toggleNav} />
+                    <NavbarToggler onClick={toggleNav} />
                     <Collapse isOpen={this.state.isNavOpen} navbar>
                         <Nav navbar>
                             <NavItem>
@@ -52,7 +50,7 @@ class Navigation extends Component {
                                 <NavLink className="nav-link" to="/cart">
                                     <i className="fa fa-shopping-cart fa-lg" /> 
                                     &nbsp; Cart &nbsp;
-                                    <span className="badge badge-danger">{itemCount}</span>
+                                    {(itemCount > 0) && <span className="badge badge-danger">{itemCount}</span>}
                                 </NavLink>
                             </NavItem>
                         </Nav>
