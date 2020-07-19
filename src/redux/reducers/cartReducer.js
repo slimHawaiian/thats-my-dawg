@@ -1,23 +1,24 @@
-export const initialState = {
- cart:[{id:1,description:'Doggles',quantity:1,price:5.00}],
- total:0,
-};
 
-export const CartReducer = (state = initialState, action) => {
+export const CartReducer = (state = [], action) => {
     switch(action.type){
-        case 'ADD_TO_CART':
-            return [...state.cart,{Id: action.id,Description:action.description,Quantity:action.quantity,Price:action.price}];
+        case 'ADD_TO_CART':          
+            return [...state,action.item];
+
         case 'DELETE_FROM_CART':
-            return state.cart.filter(id => id !== action.id);
+            const newCart = state.cart.filter(id => id !== action.id);
+            return newCart;
+
+        case 'DELETE_ALL':
+            return {cart:[],total:0};
+
         case 'UPDATE_CART':
-            const updatedCart =  state.cart.filter(id => id !== action.id);
-            return [...updatedCart,{Id:action.id,Description:action.description,Quantity:action.quantity,Price:action.price}]
+            const updatedCart =  state.cart.filter(id => id === action.id);
+            updatedCart.quantity = action.quatity;            
+            return {
+                cart:[...updatedCart],total:state.cart.reduce((sum,item) => sum + (item.price * item.quantity),0)
+            } 
+
         default:
-            return state.cart;
+            return state;
     }
 };
-
-export const TotalPriceReducer = (state = initialState, action) => {
-
-    return state.cart.reduce((sum,item) => sum += item.price);
-}

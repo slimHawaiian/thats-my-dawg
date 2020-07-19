@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class CheckoutInfo extends Component {
     constructor(props) {
-        super(props);
-        this.state = {  }
+        super(props);      
     }
     render() { 
+        const {cart} = this.props; 
+        const total = cart.reduce((sum,item) => sum + (item.price * item.quantity),0);
         return ( 
             <>
             <h1>Check Out</h1>
@@ -51,7 +53,7 @@ class CheckoutInfo extends Component {
                     </div>
                 </div>                
                
-                <h2 className='mt-4'>Your Credit Card will be charged: $00.00</h2>
+                <h2 className='mt-4'>Your Credit Card will be charged: ${total}.00</h2>
                 <p className='text-danger'>*** Do not use your real credit card info ***</p>
                 <div className='row'>
                     <div className='col-md-4'>
@@ -72,4 +74,10 @@ class CheckoutInfo extends Component {
     }
 }
  
-export default CheckoutInfo;
+const mapStateToProps = state =>{
+    return  {
+      cart: state.cart
+    }
+}
+
+export default connect(mapStateToProps) (CheckoutInfo);

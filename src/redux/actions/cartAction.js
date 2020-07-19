@@ -1,20 +1,20 @@
 export const AddToCart = Item => {
     return {
-        Type:'ADD_TO_CART',
-        Item:Item,
+        type:'ADD_TO_CART',
+        item:Item,
     }
 }
 
 export const DeleteFromCart = Item => {
     return {
-        Type:'DELETE_FROM_CART',
-        Item:Item,
+        type:'DELETE_FROM_CART',
+        item:Item,
     }
 }
 
 export const UpdateCart = Item => {
     return {
-        Type:'UPDATE_CART',
-        Item:Item,
+        type:'UPDATE_CART',
+        item:Item,
     }
 }

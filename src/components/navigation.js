@@ -1,6 +1,7 @@
 import React, { Component }  from 'react';
 import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 class Navigation extends Component {
 
@@ -13,13 +14,13 @@ class Navigation extends Component {
         };
     }
 
-    toggleNav() {
-        this.setState({
-            isNavOpen: !this.state.isNavOpen
-        });
+    toggleNav () {
+        this.setState({isNavOpen: !this.state.isNavOpen});
     }
 
     render() {
+       
+        const itemCount = this.props.cart.length;
         return (            
             <Navbar dark sticky="top" expand="md">
                 <div className="container">
@@ -49,7 +50,9 @@ class Navigation extends Component {
                             </NavItem>
                             <NavItem>
                                 <NavLink className="nav-link" to="/cart">
-                                    <i className="fa fa-shopping-cart fa-lg" /> Cart
+                                    <i className="fa fa-shopping-cart fa-lg" /> 
+                                    &nbsp; Cart &nbsp;
+                                    <span className="badge badge-danger">{itemCount}</span>
                                 </NavLink>
                             </NavItem>
                         </Nav>
@@ -59,4 +62,10 @@ class Navigation extends Component {
         );
     }
 }
-export default Navigation;
+
+const mapStateToProps = state =>{
+    return  {
+      cart: state.cart,
+    }
+}
+export default connect(mapStateToProps) (Navigation);

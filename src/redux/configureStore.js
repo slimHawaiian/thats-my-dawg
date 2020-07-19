@@ -1,11 +1,10 @@
-import { createStore } from 'redux';
-import { CartReducer, initialState } from './reducers/cartReducer';
+import { createStore,combineReducers } from 'redux';
+import { CartReducer} from './reducers/cartReducer';
 
 export const ConfigureStore = () => {
-    const store = createStore(
-        CartReducer,
-        initialState
-    );
+    const store = createStore(combineReducers({
+        cart:CartReducer,
+    }));
 
     return store;
 };

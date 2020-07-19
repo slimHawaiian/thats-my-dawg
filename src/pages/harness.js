@@ -19,7 +19,7 @@ class Harness extends Component {
                         </div>
                         <div className='col-md-6'>
                             <p>Made from top of the line 500D mil spec cordura, mil-spec webbing and hook and loop Velcro, the sides of the Icon Harness slope down from the shoulder to about the mid rib area.  This allows for more coverage, and the four GT Cobra buckles on the material eliminates worries about the strap or buckle rubbing your dog. </p>
-                            <h2>$229.99</h2>
+                            <h2>$230.00</h2>
                             <div className="input-group mb-3">
                                 <input type="number" className="form-control" placeholder="Quantity" aria-label="Quantity" aria-describedby="Quantity"/>
                                 <div className="input-group-append">
