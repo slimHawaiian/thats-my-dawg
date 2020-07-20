@@ -5,12 +5,21 @@ import harnessLink from '../img/harness.jpg';
 import * as cartActions from '../redux/actions/cartAction';
 
 class Harness extends Component {
-    render() { 
+    render() {
+        const item =  {id:2,description:'Harness',quantity:1,price:230}
         const {cart} = this.props; 
         const harnessCount = cart.reduce((sum,item) => item.description === 'Harness' ? sum + item.quantity : 0,0);
+       
         const handleAddToCart = () =>{
-            this.props.addItem({Id:2,description:'Harness',quantity:1,price:230});
+            cart.filter(x => x.description === 'Harness').length === 0 ? 
+            this.props.addItem(item) :
+            this.props.updateItemAdd(item);
         }
+
+        const handleSubFromCart = () => {
+            this.props.updateItemSub(item);
+        }
+
         return ( 
             <>
                 <FormattedNavigation/>
@@ -27,7 +36,7 @@ class Harness extends Component {
                                 <input type="number" className="form-control" readonly value = {harnessCount} placeholder="Quantity" aria-label="Quantity" aria-describedby="Quantity"/>
                                 <div className="input-group-append">
                                     <button className="btn btn-outline-primary" onClick={handleAddToCart} type="button"><i className='fa fa-plus'></i></button>
-                                    <button className="btn btn-outline-danger" type="button"><i className='fa fa-minus'></i></button>
+                                    <button className="btn btn-outline-danger" onClick={handleSubFromCart}  type="button"><i className='fa fa-minus'></i></button>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +55,9 @@ const mapStateToProps = state=>{
 
 const mapDispatchToProps = dispatch=>{
     return{
-        addItem: item => {dispatch(cartActions.AddToCart(item))},       
+        addItem: item => {dispatch(cartActions.AddToCart(item))}, 
+        updateItemAdd: item => dispatch(cartActions.UpdateCartAdd(item)),  
+        updateItemSub: item => dispatch(cartActions.UpdateCartSub(item)),     
     }
 }
 

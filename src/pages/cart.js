@@ -3,6 +3,8 @@ import FormattedNavigation from './../components/formatted-navigation';
 import CartTable from '../components/cart-table';
 import CheckoutInfo from './checkout-info';
 import Confirmation from './../components/order-confirmation';
+import { connect } from 'react-redux';
+import {DeleteAll} from '../redux/actions/cartAction';
 
 class Cart extends Component {
     constructor(props) {
@@ -26,6 +28,7 @@ class Cart extends Component {
         const onSubmit = () =>{
             this.setState({showConfirmation:true});
             this.setState({showCheckoutInfo:false});
+            this.props.deleteAllItems();
         } 
                
         return ( 
@@ -46,4 +49,16 @@ class Cart extends Component {
     }
 }
  
-export default Cart;
+const mapStateToProps = state => {
+    return  {
+      cart: state.cart,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return{
+        deleteAllItems : () => dispatch(DeleteAll()),  
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps) (Cart);

@@ -12,9 +12,16 @@ export const DeleteFromCart = Item => {
     }
 }
 
-export const UpdateCart = Item => {
+export const UpdateCartAdd = Item => {
     return {
-        type:'UPDATE_CART',
+        type:'UPDATE_CART_ADD',
+        item:Item,
+    }
+}
+
+export const UpdateCartSub = Item => {
+    return {
+        type:'UPDATE_CART_SUB',
         item:Item,
     }
 }

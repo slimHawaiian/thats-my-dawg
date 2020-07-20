@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {DeleteAll} from '../redux/actions/cartAction';
+import {DeleteAll,DeleteFromCart} from '../redux/actions/cartAction';
 
 const CartTable = (props) => {
     const {cart,deleteAllItems} = props; 
@@ -9,6 +9,9 @@ const CartTable = (props) => {
 
     const handleClearCart = () =>{
         deleteAllItems();
+    }
+    const deleteRow = (item) =>{
+        props.deleteRow(item);
     }
 
     return (        
@@ -33,10 +36,10 @@ const CartTable = (props) => {
                         { cart.map( (item,index) => {
                            return( 
                            <tr key={index}>
-                                <td>{item.description}</td>
+                                <td >{item.description}</td>
                                 <td>{item.quantity}</td>
                                 <td>${item.price}.00</td>
-                                <td><i className='fa fa-trash fa-lg text-danger'>&nbsp;</i></td>
+                                <td><a href='#' onClick={() => deleteRow(item)}><i className='fa fa-trash fa-lg text-danger'>&nbsp;</i></a></td>
                             </tr>
                            )                           
                         })}
@@ -63,7 +66,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return{
-        deleteAllItems: () => dispatch(DeleteAll()),       
+        deleteAllItems : () => dispatch(DeleteAll()),  
+        deleteRow : (item) => dispatch(DeleteFromCart(item))     
     }
 }
 

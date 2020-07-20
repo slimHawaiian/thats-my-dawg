@@ -6,15 +6,23 @@ export const CartReducer = (state = [], action) => {
             return [...state,action.item];
 
         case 'DELETE_FROM_CART':
-            return state.filter(id => id !== action.id);
+            console.log(action.item);
+            return state.filter(item => item.id !== action.item.id);
 
         case 'DELETE_CART':
             return action.item;
 
-        case 'UPDATE_CART':
-            const updatedItem = state.find(id => id === action.id);
-            updatedItem.quantity = action.quanity;            
-            return state;                
+        case 'UPDATE_CART_ADD':
+            const updatedItem = state.find(item => item.id === action.item.id);
+            updatedItem.quantity += action.item.quantity;         
+            return state.filter(item => item.quantity !== 0);  
+
+            case 'UPDATE_CART_SUB':
+                const locatedItem = state.find(item => item.id === action.item.id);
+                if(locatedItem &&locatedItem.quantity > 0)  
+                    locatedItem.quantity -= action.item.quantity;   
+                
+                return state.filter(item => item.quantity !== 0);              
 
         default:
             return state;

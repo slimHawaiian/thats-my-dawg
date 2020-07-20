@@ -17,8 +17,8 @@ class Navigation extends Component {
         const toggleNav = () => {
             this.setState({isNavOpen: !this.state.isNavOpen});
         }
-       
-        const itemCount = this.props.cart.length;
+        const {cart} = this.props;
+        const itemCount = (cart && cart.length > 0) ? cart.reduce((sum,item) => sum + item.quantity,0) : 0;
         return (            
             <Navbar dark sticky="top" expand="md">
                 <div className="container">

@@ -8,11 +8,18 @@ import * as cartActions from '../redux/actions/cartAction';
 class Doggles extends Component {
 
     render() { 
+        const item = {id:1,description:'Doggles',quantity:1,price:80}
         const {cart} = this.props; 
         const doggleCount = cart.reduce((sum,item) => item.description === 'Doggles' ? sum + item.quantity : 0,0);
 
         const handleAddToCart = () =>{
-            this.props.addItem({Id:1,description:'Doggles',quantity:1,price:80});
+            cart.filter(x => x.description === 'Doggles').length === 0 ? 
+            this.props.addItem(item) :
+            this.props.updateItemAdd(item);
+        }
+
+        const handleSubFromCart = () => {
+            this.props.updateItemSub(item);
         }
 
         return ( 
@@ -31,7 +38,7 @@ class Doggles extends Component {
                                 <input type="number" id='quantity' name='quantity' value={doggleCount} className="form-control" readOnly placeholder="Quantity" aria-label="Quantity" aria-describedby="Quantity"/>
                                 <div className="input-group-append">
                                     <button className="btn btn-outline-primary" onClick={handleAddToCart} type="button"><i className='fa fa-plus'></i></button>
-                                    <button className="btn btn-outline-danger" type="button"><i className='fa fa-minus'></i></button>
+                                    <button className="btn btn-outline-danger" onClick={handleSubFromCart} type="button"><i className='fa fa-minus'></i></button>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +57,9 @@ const mapStateToProps = state=>{
 
 const mapDispatchToProps = dispatch=>{
     return{
-        addItem: item => {dispatch(cartActions.AddToCart(item))},       
+        addItem: item => dispatch(cartActions.AddToCart(item)),   
+        updateItemAdd: item => dispatch(cartActions.UpdateCartAdd(item)),  
+        updateItemSub: item => dispatch(cartActions.UpdateCartSub(item)),  
     }
 }
 
