@@ -72,10 +72,6 @@ class CheckoutInfo extends Component {
     }
 }
  
-const mapStateToProps = state =>{
-    return  {
-      cart: state.cart
-    }
-}
+const mapStateToProps = state => ({cart: state.cart,})
 
 export default connect(mapStateToProps) (CheckoutInfo);

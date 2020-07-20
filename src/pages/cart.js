@@ -49,11 +49,7 @@ class Cart extends Component {
     }
 }
  
-const mapStateToProps = state => {
-    return  {
-      cart: state.cart,
-    }
-}
+const mapStateToProps = state => ({cart: state.cart,})
 
 const mapDispatchToProps = dispatch => {
     return{
